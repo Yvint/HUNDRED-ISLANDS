@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hundred Islands National Park</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --main: #0aa7a1;
+    --dark: #066a66;
+    --light: #e7fffd;
+}
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    line-height: 1.8;
+    scroll-behavior: smooth;
+    color: white;
+    background-color: #0a7a7a;
+}
+
+header {
+    background: var(--main);
+    padding: 15px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav {
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 450;
+    transition: 0.3s ease-in-out;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+nav a:hover, .mobile-nav a:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+nav a.active, .mobile-nav a.active {
+    background: rgba(255,255,255,0.4);
+    color: white;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: white;
+    margin: 4px 0;
+    transition: 0.4s;
+}
+
+.mobile-nav {
+    display: none;
+    flex-direction: column;
+    background: var(--main);
+    padding: 10px 20px;
+}
+
+.mobile-nav a {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 450;
+}
+
+section, .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+}
+
+section::before, .hero::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.4);
+}
+
+section > *, .hero > * {
+    position: relative;
+    z-index: 1;
+}
+
+.hero {
+    background-image: url('images/HUNDRED ISLANDS.jpg'); /* replace with your hero image */
+    background-size: cover;
+    background-position: center;
+}
+
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    margin: 0;
+    line-height: 1.2;
+}
+
+#about, #history, #how, #activities, #reviews {
+    background-color: var(--main);
+    padding: 50px 20px;
+    border-bottom: 3px solid var(--dark);
+    border-radius: 10px;
+}
+
+.activities-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.activity-card {
+    background: rgba(255,255,255,0.15);
+    border: 2px solid white;
+    border-radius: 10px;
+    padding: 15px;
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+}
+
+.activity-card img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.activity-card h3 {
+    margin: 10px 0 5px 0;
+}
+
+h1, h2 {
+    font-family: 'Playfair Display', serif;
+    color: white;
+    margin: 0 0 20px 0;
+}
+
+h1 {
+    font-size: 4rem;
+}
+
+h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+p, li, ul {
+    font-size: 1.3rem;
+    max-width: 900px;
+    text-align: justify;
+}
+
+.card {
+    background: rgba(255,255,255,0.2);
+    padding: 20px;
+    margin: 10px 0;
+    border-left: 5px solid var(--main);
+    font-size: 1.2rem;
+    border-radius: 8px;
+}
+
+footer {
+    background: var(--dark);
+    color: white;
+    text-align: center; 
+    padding: 20px;
+    border-top: 3px solid var(--main);
+    
+    display: flex;
+    justify-content: center; 
+    align-items: center;   
+    flex-direction: column; 
+}
+
+</style>
+
+<script>
+function toggleMenu() {
+    const menu = document.getElementById("mobileNav");
+    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const sections = document.querySelectorAll("section, .hero");
+    const navLinks = document.querySelectorAll("nav a, .mobile-nav a");
+
+    window.addEventListener("scroll", () => {
+        let current = "";
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 150;
+            if (pageYOffset >= sectionTop) {
+                current = section.getAttribute("id");
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove("active");
+            if (link.getAttribute("href") === "#" + current) {
+                link.classList.add("active");
+            }
+        });
+    });
+});
+</script>
+</head>
+
+<body>
+
+<header>
+    <div style="color:white; font-weight:bold; font-size:1.2rem;">Hundred Islands</div>
+
+    <div class="hamburger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <nav>
+        <a href="#hero">Home</a>
+        <a href="#about">About</a>
+        <a href="#history">History</a>
+        <a href="#how">How to Get There</a>
+        <a href="#activities">Activities</a>
+        <a href="#reviews">Reviews</a>
+    </nav>
+</header>
+
+<div class="mobile-nav" id="mobileNav">
+    <a href="#hero" onclick="toggleMenu()">Home</a>
+    <a href="#about" onclick="toggleMenu()">About</a>
+    <a href="#history" onclick="toggleMenu()">History</a>
+    <a href="#how" onclick="toggleMenu()">How to Get There</a>
+    <a href="#activities" onclick="toggleMenu()">Activities</a>
+    <a href="#reviews" onclick="toggleMenu()">Reviews</a>
+</div>
+
+
+<div id="hero" class="hero">
+    <h1>THE HUNDRED ISLANDS <br> NATIONAL PARK</h1>
+</div>
+
+
+<section id="about">
+    <h2>ABOUT</h2>
+    <p>The Hundred Islands known as "Hundred Precious Gems," is one of the top Philippine Countryside attraction. This fascinating group of over a hundred coral-based islets is located off the coast of Barangay Lucap, about 4 kilometers from the main town. While most of the islets lack significant plant life, the park draws both local and international tourists with its stunning natural beauty, ancient caves, and white-sand beaches. Several islands are named after national and local figures, such as Quezon Island, Marcos Island, and Governor's Island. For visitors, Children's Island, Governor's Island, and Quezon Island provide lodging options, including affordable Bahay Kubo (nipa hut) accommodations for budget travelers and a fully equipped guest house on Governor's Island for VIPs.</p>
+    <p>In the Hundred Islands National Park, Quezon Island, Governor's Island, and Children's Island are the main developed spots for tourism, offering activities like swimming, snorkeling, kayaking, hiking (Governor's), and picnicking, with Quezon Island being the most developed with facilities, while Marcos Island is known for its cave and Pilgrimage Island for religious visits. Key Developed Islands: Quezon Island: The most developed, featuring guest houses, gazebos, picnic areas, and water activities like helmet diving, kayaking, and zip-lining. Governor's Island: The largest, with a light-brown beach, cave, view deck, zip line (to Virgin Island), and hiking trails, including the iconic "horse's foot" rock formation. Children's Island: A family-friendly spot, also offering swimming and island hopping. Marcos Island: Known for its underwater cave, perfect for snorkeling and diving. Pilgrimage Island: A significant site for Visita Iglesia during Holy Week, featuring the Stations of the Cross. Activities: Water Sports: Swimming, snorkeling, kayaking, helmet diving. Adventure: Hiking, zip-lining (Governor's to Virgin Island). Sightseeing: View decks, caves, unique rock formations, coral gardens. Relaxation: Sunbathing, picnicking.</p>
+    <p><b>Reasons why people should go there:</b>
+    <ul>The Hundred Islands offers a captivating escape into nature's artistry. Scattered like "precious gems" across the sea near Barangay Lucap, this unique cluster of over a hundred coral-based islets is a best Philippine experience. Beyond the sheer novelty of island-hopping among so many landforms, visitors are drawn to the pristine white beaches, perfect for sunbathing, and the chance to explore intriguing primeval caves. The park balances natural exploration with convenience, offering accommodation options on key islands like Governor's and Children's, ensuring every traveler, from budget backpacker to VIP, finds their ideal base for discovering this unforgettable coastal marvel.</ul>
+    </p>
+    <p><b>Best time to visit: </b>
+    <ul>
+        <li>Peak Season (December to May): Sunny skies, warm temperatures, calm seas.</li>
+        <li>Shoulder Months (May or October): Fewer crowds, possibly lower rates, occasional showers.</li>
+    </ul>
+    </p>
+</section>
+
+
+<section id="history">
+    <h2>HISTORY & FACTS</h2>
+    <p>The islands are believed to be around two million years old, formed during the Pleistocene epoch. They are actually ancient coral reefs that were part of the seabed of an ancient sea. Lowering sea levels exposed them to the surface.</p>
+    <p>Declared the first national park in the Philippines by former President Manuel L. Quezon on January 18, 1940, under Presidential Proclamation No. 667.</p>
+    <p><b>FACTS:</b>
+    <ul>
+        <li>124 islands at low tide, 123 at high tide.</li>
+        <li>Many have mushroom-like shapes due to erosion.</li>
+        <li>Only a few developed for tourism: Governor's, Quezon, Children's, Pilgrimage.</li>
+        <li>Steeped in folklore: giant's tears, warring chieftains.</li>
+        <li>Also called Kapulo-puloan or Taytay-Bakes.</li>
+        <li>Recognized as National Geological Monument.</li>
+    </ul>
+    </p>
+</section>
+
+<section id="how">
+    <h2>HOW TO GET THERE (From Dagupan)</h2>
+    <p><b>STEP 1: Dagupan to Alaminos City (Bus)</b>
+    <ul>
+        <li>Provincial Bus (Five Star, Victory Liner)</li>
+        <li>Travel Time: 1-1.5 hours</li>
+        <li>Fare: ₱170 - ₱310</li>
+        <li>Alight at Alaminos City Bus Terminal</li>
+    </ul>
+    </p>
+    <p><b>STEP 2: Alaminos to Lucap Wharf (Tricycle)</b>
+    <ul>
+        <li>Travel Time: 15-20 minutes</li>
+        <li>Fare: ₱15 - ₱100 depending on type</li>
+    </ul>
+    </p>
+    <p><b>STEP 3: Lucap Wharf to The Hundred Islands (Boat)</b>
+    <ul>
+        <li>Day Tour Registration Fee: ~₱120</li>
+        <li>Refundable Trash Deposit: ~₱200</li>
+        <li>Boat Rental: Small ₱1,400 | Medium ₱1,800 | Large ₱2,000</li>
+    </ul>
+    </p>
+</section>
+
+<div style="width:100%; height:400px; margin-top:20px;">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3829.893559829057!2d120.021944614798!3d16.203333988768!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x338f53c3b8b9b5b7%3A0x8f8f8f8f8f8f8f8f!2sLucap%20Wharf%2C%20Alaminos%2C%20Pangasinan!5e0!3m2!1sen!2sph!4v1737000000000" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+
+</section>
+
+<section id="activities">
+    <h2>ACTIVITIES</h2>
+    <p>Hundred Islands National Park offers a variety of activities. Optional activities have separate fees. Visitors are responsible for paying all optional activity fees directly.</p>
+
+    <div class="activities-container">
+        
+        <div class="activity-card">
+            <img src="images/zipline.jpg" alt="Zipline">
+            <h3>ZIPLINE</h3>
+            <p>Experience the breathtaking 546m island-to-island zipline from Governor's Island to Virgin Island.</p>
+            <p><b>Rates:</b> Quezon Island Php 100/jump, Lopez Island Php 250/jump</p>
+        </div>
+
+        <div class="activity-card">
+            <img src="images/parasailing.jpg" alt="Parasailing">
+            <h3>PARASAILING</h3>
+            <p>Soar 600–1500 feet above the sea and enjoy a breathtaking aerial view of the 123 islands. Solo or dual rides available.</p>
+            <p><b>Rates:</b> Solo – Php 2000, Dual – Php 3000</p>
+        </div>
+
+        <div class="activity-card">
+            <img src="images/kayaking.jpg" alt="Kayaking">
+            <h3>KAYAKING</h3>
+            <p>Island-to-island kayaking adventure, perfect for friends, family, or team-building activities.</p>
+            <p><b>Rate:</b> Php 250/hour (2 pax)</p>
+        </div>
+
+        <div class="activity-card">
+            <img src="images/banana boat ride.jpg" alt="Banana Boat">
+            <h3>BANANA BOAT RIDE</h3>
+            <p>Enjoy a thrilling ride around the islands with friends and family.</p>
+            <p><b>Rate:</b> Php 250/person (Minimum 6 pax)</p>
+        </div>
+
+        <div class="activity-card">
+            <img src="images/snorkeling .jpg" alt="Snorkeling">
+            <h3>SNORKELING</h3>
+            <p>Explore the vibrant underwater world and coral gardens at Quezon Island.</p>
+            <p><b>Rate:</b> Php 150/person</p>
+        </div>
+
+        <div class="activity-card">
+            <img src="images/jet ski.jpg" alt="Jet Ski">
+            <h3>JET SKI</h3>
+            <p>Feel the adrenaline rush as you speed through the pristine waters of Hundred Islands.</p>
+            <p><b>Rates:</b> 15 mins Php 1000, 30 mins Php 2000</p>
+        </div>
+
+        <div class="activity-card">
+            <img src="images/CLIFF DIVING AT MARCOS.png" alt="Cliff Diving">
+            <h3>CLIFF DIVING</h3>
+            <p>Jump from the cliffs of Imelda Cave, Marcos Island, and swim through the cave opening. Staff assist during high tide.</p>
+            <p><b>Rates:</b> Life vest rental – Php 50/pc (required)</p>
+        </div>
+
+    </div>
+</section>
+
+<section id="reviews">
+    <h2>PERSONAL REVIEWS</h2>
+    <div class="card"><br><b>STEPHANIE:</b></br> I haven’t been to Hundred Islands yet, but based on everything I’ve seen and heard from other travelers, it really seems like a place worth visiting. The photos and reviews make it look peaceful and exciting at the same time clear blue water, clean islands, and a lot of activities like snorkeling, kayaking, and exploring viewpoints. What I really like is that many people say the area is well-maintained and budget-friendly, which makes it even more inviting for someone planning a first visit. I’m honestly looking forward to experiencing it myself soon especially the island-hopping part and seeing the views in person instead of just online. It feels like the kind of destination where you can relax, enjoy nature, and create good memories.</div>
+    <div class="card"><br><b>JANILA:</b><br> As someone from Binmaley, I’ve always felt lucky that the Hundred Islands is just a short ride away and after visiting three times, I can say that the experience never loses its charm. Every trip feels different, and the beauty of the islands still amazes me. Though the place gets crowded during peak season, the atmosphere still feels welcoming, and the locals are friendly. The whole experience feels close to home literally and emotionally. For me, Hundred Islands isn’t just a tourist spot; it’s a reminder of the natural beauty we Pangasinenses can be proud of. I’d say Hundred Islands is worth visiting not just once, but again and again.</div>
+    <div class="card"><b><b>YVINT:</b></b>br> As a local from Alaminos, I grew up going to Hundred Islands because our family reunions and our church anniversaries were usually held there. I’ve only visited around three islands and tried the banana boat before, but I still enjoyed it. The place has nice views and clear water. It can get crowded sometimes, but it’s still a good spot to relax and spend time with family. Even with my simple experiences there, I still think it’s a place worth visiting.</div>
+    <div class="card"><br><b>MERABEL:</b></br> I haven’t been to Hundred Islands yet, but I really want to go. The place looks beautiful with its many small islands surrounded by clear blue water. It seems peaceful, perfect for swimming, snorkeling, and exploring caves. I’m most excited to try the zipline because it looks fun and gives a great view of the islands from above. I imagine feeling the wind while seeing the wide ocean beneath me. Hundred Islands feels like a simple but amazing escape where I can relax, enjoy nature, and try new adventures. I hope to visit soon and experience everything for myself.</div>
+    <div class="card"><br><b>KHLEYA:</b></br> I haven’t been to Hundred Islands yet but I can already tell how beautiful it is from the pictures I’ve seen online. The clear blue water and the many small islands look so peaceful and breathtaking. We actually had plans to go there before, and I was really excited because I had been looking forward to the trip for a long time. Sadly, it didn’t happen but I still hope that someday we’ll be able to visit. I believe it would be an unforgettable experience and I can’t wait for the time when I can finally see it in person.
+</div>
+</section>
+
+<footer>
+    <p>Stephanie • Janila • Yvint • Merabel • Khleya</p>
+    <p>© Copyright GROUP 7 All Rights Reserved</p>
+</footer>
+
+</body>
+</html>
